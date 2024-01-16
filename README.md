@@ -1,6 +1,6 @@
-# Multi-modal Transportation Optimization
+# Transportation Optimization
 
-A project on using mathematical programming to solve multi-modal transportation cost minimization in goods delivery and supply chain management.
+A project on using mathematical programming to solve transportation cost minimization in goods delivery and supply chain management.
 
 ## Catalogue
 
@@ -127,7 +127,7 @@ Similar to the decision variables, the following parameter arrays or matrices ar
 13. **Destination Port:** &nbsp;&nbsp; **_DP_**<br>
     A one dimension array with dimension goods. **_DP<sub>k</sub>_** represents the port where **goods k** ends up to be in.
 
-The data of all the above parameter matrices will be imported from **model data.xlsx** with function **transform()** and **set_param()**. For more details, please refer to the codes in [**multi-modal transpotation.py**](https://github.com/hzjken/multimodal-transportation-optimization/blob/master/multi-modal%20transpotation.py).
+The data of all the above parameter matrices will be imported from **model data.xlsx** with function **transform()** and **set_param()**. For more details, please refer to the codes in [**transpotation.py**](https://github.com/hzjken/multimodal-transportation-optimization/blob/master/multi-modal%20transpotation.py).
 
 ## Mathematical Modelling
 
@@ -226,4 +226,4 @@ With the objective & constraints built, the model is now complete! To make users
 
 ## Model Use & Extension Guide
 
-Now that you know about all the details of the model, if you want to use it, just download the [**multi-modal transportation.py**](https://github.com/hzjken/multimodal-transportation-optimization/blob/master/multi-modal%20transportation.py) & [**model data.xlsx**](https://github.com/hzjken/multimodal-transportation-optimization/blob/master/model%20data.xlsx) in this repo. You can reset all the parameters' data in the excel file to fit your own case. After that, just run the python file and your **Solution.txt** will be generated!
+Now that you know about all the details of the model, if you want to use it, just download the [**transportation.py**](https://github.com/hzjken/multimodal-transportation-optimization/blob/master/multi-modal%20transportation.py) & [**model data.xlsx**](https://github.com/hzjken/multimodal-transportation-optimization/blob/master/model%20data.xlsx) in this repo. You can reset all the parameters' data in the excel file to fit your own case. After that, just run the python file and your **Solution.txt** will be generated!
