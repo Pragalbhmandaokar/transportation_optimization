@@ -4,15 +4,15 @@ A project on using mathematical programming to solve transportation cost minimiz
 
 ## Catalogue
 
-[**Project Overview**](https://github.com/hzjken/multimodal-transportation-optimization/#project-overview)<br>
-[**Problem Statement**](https://github.com/hzjken/multimodal-transportation-optimization/#problem-statement)<br>
-[**Assumptions**](https://github.com/hzjken/multimodal-transportation-optimization/#assumptions)<br>
-[**Dimension & Matrixing**](https://github.com/hzjken/multimodal-transportation-optimization/#dimension--matrixing)<br>
-[**Decision Variables**](https://github.com/hzjken/multimodal-transportation-optimization/#decision-variables)<br>
-[**Parameters**](https://github.com/hzjken/multimodal-transportation-optimization/#parameters)<br>
-[**Mathematical Modelling**](https://github.com/hzjken/multimodal-transportation-optimization/#mathematical-modelling)<br>
-[**Optimization Result & Solution**](https://github.com/hzjken/multimodal-transportation-optimization/#optimization-result--solution)<br>
-[**Model Use & Extension Guide**](https://github.com/hzjken/multimodal-transportation-optimization/#model-use--extension-guide)
+[**Project Overview**](https://github.com/Pragalbhmandaokar/transportation_optimization/#project-overview)<br>
+[**Problem Statement**](https://github.com/Pragalbhmandaokar/transportation_optimization/#problem-statement)<br>
+[**Assumptions**](https://github.com/Pragalbhmandaokar/transportation_optimization/#assumptions)<br>
+[**Dimension & Matrixing**](https://github.com/Pragalbhmandaokar/transportation_optimization/#dimension--matrixing)<br>
+[**Decision Variables**](https://github.com/Pragalbhmandaokar/transportation_optimization/#decision-variables)<br>
+[**Parameters**](https://github.com/Pragalbhmandaokar/transportation_optimization/#parameters)<br>
+[**Mathematical Modelling**](https://github.com/Pragalbhmandaokar/transportation_optimization/#mathematical-modelling)<br>
+[**Optimization Result & Solution**](https://github.com/Pragalbhmandaokar/transportation_optimization/#optimization-result--solution)<br>
+[**Model Use & Extension Guide**](https://github.com/Pragalbhmandaokar/transportation_optimization/#model-use--extension-guide)
 
 ## Project Overview
 
@@ -89,7 +89,7 @@ As mentioned above, we will use the concept of **variable matrix**, a list of va
 Similar to the decision variables, the following parameter arrays or matrices are introduced for the sake of later model building:<br>
 
 1. **Per Container Cost:** &nbsp;&nbsp; **_C_**<br>
-   A 3 dimensional parameter matrix, each dimension representing start port, end port and time. **_C<sub>i,j,t</sub>_** in the matrix represents the overall transportation cost per container from **port i** to **port j** at **time t**. This overall cost includes handling cost, bunker/fuel cost, documentation cost, equipment cost and extra cost from [**model data.xlsx**](https://github.com/hzjken/multimodal-transportation-optimization/blob/master/model%20data.xlsx). For infeasible route, the cost element will be set to be big M (an extremely large number), making the choice infeasible.
+   A 3 dimensional parameter matrix, each dimension representing start port, end port and time. **_C<sub>i,j,t</sub>_** in the matrix represents the overall transportation cost per container from **port i** to **port j** at **time t**. This overall cost includes handling cost, bunker/fuel cost, documentation cost, equipment cost and extra cost from [**model data.xlsx**](https://github.com/Pragalbhmandaokar/transportation_optimization/blob/master/model%20data.xlsx). For infeasible route, the cost element will be set to be big M (an extremely large number), making the choice infeasible.
 
 2. **Route Fixed Cost:** &nbsp;&nbsp; **_FC_**<br>
    A 3 dimensional parameter matrix, each dimension representing start port, end port and time. **_FC<sub>i,j,t</sub>_** in the matrix represents the fixed transportation cost to travel from **port i** to **port j** at **time t**, regardless of goods number or volume. For infeasible route, the cost element will be set to be big M as well.
@@ -98,7 +98,7 @@ Similar to the decision variables, the following parameter arrays or matrices ar
    A one dimension array with dimension start port. **_wh<sub>i</sub>_** represents the warehouse cost per cubic meter per day at **port i**. Warehouse cost for ports with no warehouse function (like airport, railway station etc.) is set to be big M.
 
 4. **Transportation Time:** &nbsp;&nbsp; **_T_**<br>
-   A 3 dimensional parameter matrix, each dimension representing start port, end port and time. **_T<sub>i,j,t</sub>_** in the matrix represents the overall transportation time from **port i** to **port j** at **time t**. This overall time includes custom clearance time, handling time, transit time and extra time from [**model data.xlsx**](https://github.com/hzjken/multimodal-transportation-optimization/blob/master/model%20data.xlsx). For infeasible route, the time element will be set to be big M.
+   A 3 dimensional parameter matrix, each dimension representing start port, end port and time. **_T<sub>i,j,t</sub>_** in the matrix represents the overall transportation time from **port i** to **port j** at **time t**. This overall time includes custom clearance time, handling time, transit time and extra time from [**model data.xlsx**](https://github.com/Pragalbhmandaokar/transportation_optimization/blob/master/model%20data.xlsx). For infeasible route, the time element will be set to be big M.
 
 5. **Tax Percentage:** &nbsp;&nbsp; **_tax_**<br>
    A one dimension array with dimension goods. **_tax<sub>k</sub>_** represents the tax percentage for **goods k** imposed by its destination country. If the goods only goes through a domestic transit, the tax percentage for such goods will be set as 0.
@@ -127,7 +127,7 @@ Similar to the decision variables, the following parameter arrays or matrices ar
 13. **Destination Port:** &nbsp;&nbsp; **_DP_**<br>
     A one dimension array with dimension goods. **_DP<sub>k</sub>_** represents the port where **goods k** ends up to be in.
 
-The data of all the above parameter matrices will be imported from **model data.xlsx** with function **transform()** and **set_param()**. For more details, please refer to the codes in [**transpotation.py**](https://github.com/hzjken/multimodal-transportation-optimization/blob/master/multi-modal%20transpotation.py).
+The data of all the above parameter matrices will be imported from **model data.xlsx** with function **transform()** and **set_param()**. For more details, please refer to the codes in [**transpotation.py**](https://github.com/Pragalbhmandaokar/transportation_optimization/blob/master/multi-modal%20transpotation.py).
 
 ## Mathematical Modelling
 
@@ -222,8 +222,8 @@ model.add_constraints(np.sum(arrTime[:,DestinationPort[k],:,k]) <= kDDL[k] for k
 
 ## Optimization Result & Solution
 
-With the objective & constraints built, the model is now complete! To make users understand the result easier, we process it with the function **txt_solution()** and save it into a text file [**Solution.txt**](https://github.com/hzjken/multimodal-transportation-optimization/blob/master/Solution.txt). The minimized cost value as well as optimal routes for all goods are presented in it.
+With the objective & constraints built, the model is now complete! To make users understand the result easier, we process it with the function **txt_solution()** and save it into a text file [**Solution.txt**](https://github.com/Pragalbhmandaokar/transportation_optimization/blob/master/Solution.txt). The minimized cost value as well as optimal routes for all goods are presented in it.
 
 ## Model Use & Extension Guide
 
-Now that you know about all the details of the model, if you want to use it, just download the [**transportation.py**](https://github.com/hzjken/multimodal-transportation-optimization/blob/master/multi-modal%20transportation.py) & [**model data.xlsx**](https://github.com/hzjken/multimodal-transportation-optimization/blob/master/model%20data.xlsx) in this repo. You can reset all the parameters' data in the excel file to fit your own case. After that, just run the python file and your **Solution.txt** will be generated!
+Now that you know about all the details of the model, if you want to use it, just download the [**transportation.py**](https://github.com/Pragalbhmandaokar/transportation_optimization/blob/master/multi-modal%20transportation.py) & [**model data.xlsx**](https://github.com/Pragalbhmandaokar/transportation_optimization/blob/master/model%20data.xlsx) in this repo. You can reset all the parameters' data in the excel file to fit your own case. After that, just run the python file and your **Solution.txt** will be generated!
